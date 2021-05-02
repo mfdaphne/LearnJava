@@ -8,7 +8,9 @@ public class LearnAboutString {
 
 		String b = "tiger";
 
-		String c = lion.concat(b);
+		String c = b;
+
+		lion.concat(b);
 
 		System.out.println(lion.indexOf("io"));
 

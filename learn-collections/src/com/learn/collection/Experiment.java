@@ -115,8 +115,5 @@ public class Experiment {
 
 		Experiment exp = new Experiment();
 		exp.learnContinue();
-//		Scanner scan = new Scanner(System.in);
-//		System.out.println("Enter float :");
-//		scan.nextFloat();
 	}
 }
