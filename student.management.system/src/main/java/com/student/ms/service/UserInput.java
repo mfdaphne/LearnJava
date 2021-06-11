@@ -29,6 +29,7 @@ public class UserInput {
 		boolean exit = true;
 
 		while (exit) {
+			System.out.println("---------------------------------");
 			System.out.println("How can we help you ?\n"
 					+ "1. View all Students\n" + "2. Register a new Student\n"
 					+ "3. Remove a Student\n4.Exit");
@@ -163,12 +164,15 @@ public class UserInput {
 	private void viewAllStudents() {
 		List<Student> students = processStudent.getAllStudents();
 
-		System.out.println("S.No\tRollNo\tFirst Name\tLast Name");
+		System.out.println(
+				"S.No\tRollNo\tFirst Name\tLast Name\tTotal Marks\tPercentage");
 		int count = 0;
 
 		for (Student student : students) {
 			System.out.println(++count + "\t" + student.getRollNo() + "\t"
-					+ student.getFirstName() + "\t" + student.getLastName());
+					+ student.getFirstName() + "\t" + student.getLastName()
+					+ "\t\t");
+			System.out.println("---------------------------------");
 		}
 	}
 }

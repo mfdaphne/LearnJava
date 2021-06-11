@@ -10,6 +10,9 @@ public class PrimaryStudent extends Student {
 
 	private float english;
 
+	public PrimaryStudent() {
+	}
+
 	public float getScience() {
 		return science;
 	}

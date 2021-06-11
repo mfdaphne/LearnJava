@@ -10,6 +10,9 @@ public class SecondaryStudent extends Student {
 
 	private float mathematics;
 
+	public SecondaryStudent() {
+	}
+
 	public float getPhysics() {
 		return physics;
 	}
