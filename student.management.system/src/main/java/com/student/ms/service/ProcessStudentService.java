@@ -7,6 +7,7 @@ import com.student.ms.exception.InvalidRollNumberException;
 import com.student.ms.exception.RollNoNotFoundException;
 import com.student.ms.exception.StudentAlreadyExistsException;
 import com.student.ms.exception.StudentNotFoundException;
+import com.student.ms.model.Mark;
 import com.student.ms.model.PrimaryStudent;
 import com.student.ms.model.SecondaryStudent;
 import com.student.ms.model.Student;
@@ -71,10 +72,10 @@ public class ProcessStudentService implements IProcessStudent {
 			SecondaryStudent secondaryStudent)
 			throws InvalidMarkEnteredException {
 
-		if (isMarkValid(secondaryStudent.getBiology())
+		if (!(isMarkValid(secondaryStudent.getBiology())
 				&& isMarkValid(secondaryStudent.getPhysics())
 				&& isMarkValid(secondaryStudent.getChemistry())
-				&& isMarkValid(secondaryStudent.getMathematics())) {
+				&& isMarkValid(secondaryStudent.getMathematics()))) {
 
 			throw new InvalidMarkEnteredException();
 
@@ -85,10 +86,10 @@ public class ProcessStudentService implements IProcessStudent {
 	private void checkValidMarkOfPrimaryStudent(PrimaryStudent primaryStudent)
 			throws InvalidMarkEnteredException {
 
-		if (isMarkValid(primaryStudent.getEnglish())
+		if (!(isMarkValid(primaryStudent.getEnglish())
 				&& isMarkValid(primaryStudent.getScience())
 				&& isMarkValid(primaryStudent.getSocial())
-				&& isMarkValid(primaryStudent.getMathematics())) {
+				&& isMarkValid(primaryStudent.getMathematics()))) {
 
 			throw new InvalidMarkEnteredException();
 
@@ -118,6 +119,14 @@ public class ProcessStudentService implements IProcessStudent {
 		if (studentFound == false) {
 			throw new RollNoNotFoundException(rollNo);
 		}
+
+		List<Mark> marks = StudentDatabase.getMarks();
+		for (int i = 0; i < marks.size(); i++) {
+			if (marks.get(i).getRollNo() == rollNo) {
+				marks.remove(i);
+			}
+		}
+
 	}
 
 	@Override

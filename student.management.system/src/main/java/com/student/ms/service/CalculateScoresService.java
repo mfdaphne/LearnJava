@@ -42,10 +42,20 @@ public class CalculateScoresService implements ICalculateScores {
 					+ secondaryStudent.getChemistry();
 		}
 
-		if (totalMarks != 0.0) {
-			marks.add(new Mark(student.getRollNo(), totalMarks));
-		}
+		marks.add(new Mark(student.getRollNo(), totalMarks));
 
+	}
+
+	@Override
+	public float getPercentageOfStudent(long rollNo)
+			throws MarksNotCalculatedException, StudentNotFoundException {
+		float percentage = 0.0f;
+
+		checkStudentIsPresent(rollNo);
+
+		Mark markOfStudent = checkStudentMarkIsProcessed(rollNo);
+		percentage = 100 * (markOfStudent.getTotalScore() / 400);
+		return percentage;
 	}
 
 	private Student checkStudentIsPresent(long rollNo)
@@ -59,20 +69,6 @@ public class CalculateScoresService implements ICalculateScores {
 
 		throw new StudentNotFoundException();
 
-	}
-
-	@Override
-	public float getPercentageOfStudent(long rollNo)
-			throws StudentNotFoundException, MarksNotCalculatedException {
-		Student student = checkStudentIsPresent(rollNo);
-		float percentage = 0.0f;
-
-		if (student != null) {
-			Mark markOfStudent = checkStudentMarkIsProcessed(rollNo);
-			percentage = 100 * (markOfStudent.getTotalScore() / 400);
-			return percentage;
-		}
-		throw new StudentNotFoundException();
 	}
 
 	private Mark checkStudentMarkIsProcessed(long rollNo)

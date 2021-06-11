@@ -14,6 +14,9 @@ public class Student {
 
 	private String remarks;
 
+	public Student() {
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
