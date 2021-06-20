@@ -98,10 +98,10 @@ public class ProcessStudentService implements IProcessStudent {
 	}
 
 	private boolean isMarkValid(float mark) {
-		if (mark > 100) {
-			return false;
+		if (mark >= 0 && mark <= 100) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	@Override
