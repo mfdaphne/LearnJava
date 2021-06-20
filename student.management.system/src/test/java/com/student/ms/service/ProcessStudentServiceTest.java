@@ -41,8 +41,8 @@ public class ProcessStudentServiceTest {
 	@Test
 	public void testAddPrimaryStudent_shouldAdd_WhenAllAreCorrect() {
 
-		PrimaryStudent student = createPrimaryStudent("firstName", "LastName",
-				12001);
+		PrimaryStudent student = StudentFactory
+				.getPrimaryStudent("firstName", "LastName", 12001);
 
 		try {
 			processStudentService.addStudent(student);
@@ -64,8 +64,8 @@ public class ProcessStudentServiceTest {
 	@Test
 	public void testAddSecondaryStudent_shouldAdd_WhenAllAreCorrect() {
 
-		SecondaryStudent student = createSecondaryStudent("firstName",
-				"LastName", 12001);
+		SecondaryStudent student = StudentFactory
+				.getSecondaryStudent("firstName", "LastName", 12001);
 
 		try {
 			processStudentService.addStudent(student);
@@ -89,11 +89,11 @@ public class ProcessStudentServiceTest {
 			throws StudentAlreadyExistsException, InvalidRollNumberException,
 			InvalidMarkEnteredException, StudentNotFoundException {
 
-		PrimaryStudent student1 = createPrimaryStudent("firstName", "LastName",
-				12002);
+		PrimaryStudent student1 = StudentFactory
+				.getPrimaryStudent("firstName", "LastName", 12002);
 
-		PrimaryStudent student2 = createPrimaryStudent("firstName", "LastName",
-				12002);
+		PrimaryStudent student2 = StudentFactory
+				.getPrimaryStudent("firstName", "LastName", 12002);
 
 		processStudentService.addStudent(student1);
 		processStudentService.addStudent(student2);
@@ -108,11 +108,11 @@ public class ProcessStudentServiceTest {
 			throws StudentAlreadyExistsException, InvalidRollNumberException,
 			InvalidMarkEnteredException, StudentNotFoundException {
 
-		PrimaryStudent student1 = createPrimaryStudent("firstName", "LastName",
-				12002);
+		PrimaryStudent student1 = StudentFactory
+				.getPrimaryStudent("firstName", "LastName", 12002);
 
-		PrimaryStudent student2 = createPrimaryStudent("otherName", "LastName",
-				12002);
+		PrimaryStudent student2 = StudentFactory
+				.getPrimaryStudent("otherName", "LastName", 12002);
 
 		processStudentService.addStudent(student1);
 		processStudentService.addStudent(student2);
@@ -127,8 +127,8 @@ public class ProcessStudentServiceTest {
 			throws StudentAlreadyExistsException, InvalidRollNumberException,
 			InvalidMarkEnteredException, StudentNotFoundException {
 
-		PrimaryStudent student1 = createPrimaryStudent("otherName", "LastName",
-				12002);
+		PrimaryStudent student1 = StudentFactory
+				.getPrimaryStudent("otherName", "LastName", 12002);
 		student1.setMathematics(104);
 
 		processStudentService.addStudent(student1);
@@ -143,11 +143,11 @@ public class ProcessStudentServiceTest {
 			throws StudentAlreadyExistsException, InvalidRollNumberException,
 			InvalidMarkEnteredException, StudentNotFoundException {
 
-		SecondaryStudent student1 = createSecondaryStudent("firstName",
-				"LastName", 12002);
+		SecondaryStudent student1 = StudentFactory
+				.getSecondaryStudent("firstName", "LastName", 12002);
 
-		SecondaryStudent student2 = createSecondaryStudent("firstName",
-				"LastName", 12002);
+		SecondaryStudent student2 = StudentFactory
+				.getSecondaryStudent("firstName", "LastName", 12002);
 
 		processStudentService.addStudent(student1);
 		processStudentService.addStudent(student2);
@@ -162,11 +162,11 @@ public class ProcessStudentServiceTest {
 			throws StudentAlreadyExistsException, InvalidRollNumberException,
 			InvalidMarkEnteredException, StudentNotFoundException {
 
-		SecondaryStudent student1 = createSecondaryStudent("firstName",
-				"LastName", 12002);
+		SecondaryStudent student1 = StudentFactory
+				.getSecondaryStudent("firstName", "LastName", 12002);
 
-		SecondaryStudent student2 = createSecondaryStudent("otherName",
-				"LastName", 12002);
+		SecondaryStudent student2 = StudentFactory
+				.getSecondaryStudent("otherName", "LastName", 12002);
 
 		processStudentService.addStudent(student1);
 		processStudentService.addStudent(student2);
@@ -181,8 +181,8 @@ public class ProcessStudentServiceTest {
 			throws StudentAlreadyExistsException, InvalidRollNumberException,
 			InvalidMarkEnteredException, StudentNotFoundException {
 
-		SecondaryStudent student1 = createSecondaryStudent("otherName",
-				"LastName", 12002);
+		SecondaryStudent student1 = StudentFactory
+				.getSecondaryStudent("otherName", "LastName", 12002);
 		student1.setMathematics(104);
 
 		processStudentService.addStudent(student1);
@@ -194,8 +194,8 @@ public class ProcessStudentServiceTest {
 
 	@Test
 	public void shouldRemovePrimaryStudentAndMarks_WhenPresent() {
-		PrimaryStudent student = createPrimaryStudent("firstName", "LastName",
-				12001);
+		PrimaryStudent student = StudentFactory
+				.getPrimaryStudent("firstName", "LastName", 12001);
 
 		try {
 			processStudentService.addStudent(student);
@@ -221,8 +221,8 @@ public class ProcessStudentServiceTest {
 			throws StudentAlreadyExistsException, InvalidRollNumberException,
 			InvalidMarkEnteredException, StudentNotFoundException,
 			RollNoNotFoundException {
-		PrimaryStudent student = createPrimaryStudent("firstName", "LastName",
-				12001);
+		PrimaryStudent student = StudentFactory
+				.getPrimaryStudent("firstName", "LastName", 12001);
 
 		processStudentService.addStudent(student);
 		assertEquals(1, StudentDatabase.getStudents().size());
@@ -239,12 +239,12 @@ public class ProcessStudentServiceTest {
 			throws StudentAlreadyExistsException, InvalidRollNumberException,
 			InvalidMarkEnteredException, StudentNotFoundException {
 
-		PrimaryStudent student1 = createPrimaryStudent("firstName", "LastName",
-				12001);
-		PrimaryStudent student2 = createPrimaryStudent("firstName2", "LastName",
-				12002);
-		PrimaryStudent student3 = createPrimaryStudent("firstName3", "LastName",
-				12003);
+		PrimaryStudent student1 = StudentFactory
+				.getPrimaryStudent("firstName", "LastName", 12001);
+		PrimaryStudent student2 = StudentFactory
+				.getPrimaryStudent("firstName2", "LastName", 12002);
+		PrimaryStudent student3 = StudentFactory
+				.getPrimaryStudent("firstName3", "LastName", 12003);
 
 		processStudentService.addStudent(student1);
 		processStudentService.addStudent(student2);
@@ -256,32 +256,6 @@ public class ProcessStudentServiceTest {
 		List<Student> allStudents = processStudentService.getAllStudents();
 		assertEquals(3, allStudents.size());
 
-	}
-
-	private PrimaryStudent createPrimaryStudent(String firstName,
-			String lastName, long rollNo) {
-		PrimaryStudent student = new PrimaryStudent();
-		student.setFirstName(firstName);
-		student.setLastName(lastName);
-		student.setRollNo(rollNo);
-		student.setMathematics(78);
-		student.setScience(99);
-		student.setSocial(56);
-		student.setEnglish(50);
-		return student;
-	}
-
-	private SecondaryStudent createSecondaryStudent(String firstName,
-			String lastName, long rollNo) {
-		SecondaryStudent student = new SecondaryStudent();
-		student.setFirstName(firstName);
-		student.setLastName(lastName);
-		student.setRollNo(rollNo);
-		student.setMathematics(78);
-		student.setBiology(99);
-		student.setPhysics(56);
-		student.setChemistry(50);
-		return student;
 	}
 
 }
