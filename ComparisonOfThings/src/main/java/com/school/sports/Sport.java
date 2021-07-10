@@ -1,6 +1,6 @@
 package com.school.sports;
 
-public class Sport {
+public class Sport implements Comparable<Sport> {
 
 	private int id;
 
@@ -90,6 +90,12 @@ public class Sport {
 		public Sport build() {
 			return new Sport(this);
 		}
+	}
+
+	@Override
+	public int compareTo(Sport o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
