@@ -14,6 +14,8 @@ public class SportsClub {
 		sports.add(Sport.builder().withId(4).withName("Tennis").build());
 		sports.add(Sport.builder().withId(1000).withName("Cricket").build());
 
+		System.out.println("Before Sort : " + sports);
+
 		Comparator<Sport> compareById = new Comparator<>() {
 
 			@Override
@@ -23,8 +25,11 @@ public class SportsClub {
 
 		};
 
+		Collections.sort(sports, compareById);
+		System.out.println("After Sort : " + sports);
+
 		Comparator<Sport> compareByIdFI = (sport1, sport2) -> {
-			return sport1.getId() - sport2.getId();
+			return sport2.getId() - sport1.getId();
 		};
 
 		Comparator<Sport> compareByNameFI = (sport1, sport2) -> sport1.getName()
@@ -37,6 +42,12 @@ public class SportsClub {
 		System.out.println("-------------------------------------");
 		System.out.println("After Sort");
 		System.out.println(sports);
+
+		List<String> food = new ArrayList<>();
+		food.add("Biryani");
+		food.add("apple pie");
+
+		Collections.sort(food);
 
 	}
 }

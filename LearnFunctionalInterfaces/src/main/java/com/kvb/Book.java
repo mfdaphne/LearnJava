@@ -1,4 +1,4 @@
-package com.school.library;
+package com.kvb;
 
 public class Book {
 
