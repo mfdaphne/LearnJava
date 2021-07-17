@@ -4,4 +4,5 @@ package com.kvb;
 public interface DummyInterface {
 
 	String getSomething(int i);
+
 }

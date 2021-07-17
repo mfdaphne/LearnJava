@@ -16,38 +16,13 @@ public class SportsClub {
 
 		System.out.println("Before Sort : " + sports);
 
-		Comparator<Sport> compareById = new Comparator<>() {
-
-			@Override
-			public int compare(Sport sport1, Sport sport2) {
-				return sport1.getId() - sport2.getId();
-			}
-
-		};
+		Comparator<Sport> compareById = (a, b) -> a.getId() - b.getId();
 
 		Collections.sort(sports, compareById);
-		System.out.println("After Sort : " + sports);
 
-		Comparator<Sport> compareByIdFI = (sport1, sport2) -> {
-			return sport2.getId() - sport1.getId();
-		};
-
-		Comparator<Sport> compareByNameFI = (sport1, sport2) -> sport1.getName()
-				.compareTo(sport2.getName());
-
-		System.out.println("Before Sort");
-		System.out.println(sports);
-
-		Collections.sort(sports, compareByNameFI);
-		System.out.println("-------------------------------------");
-		System.out.println("After Sort");
-		System.out.println(sports);
-
-		List<String> food = new ArrayList<>();
-		food.add("Biryani");
-		food.add("apple pie");
-
-		Collections.sort(food);
+		Comparator<Sport> compareByName = (a, b) -> a.getName()
+				.compareTo(b.getName());
+		Collections.sort(sports, compareByName);
 
 	}
 }
