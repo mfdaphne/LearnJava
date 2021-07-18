@@ -7,8 +7,7 @@ import java.util.Locale;
 public class FormattingNumbers {
 
 	public static void formatSomeNumbers(Locale locale) {
-		float k = 56.324f;
-
+		float k = 2.324f;
 		NumberFormat numbFormatter = NumberFormat.getCurrencyInstance(locale);
 		System.out.println(numbFormatter.format(k));
 
