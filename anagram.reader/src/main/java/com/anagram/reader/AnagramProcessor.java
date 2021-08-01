@@ -1,23 +1,38 @@
 package com.anagram.reader;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
-import com.anagram.reader.core.AnagramFileReader;
-import com.anagram.reader.exception.FileNotReadException;
-import com.anagram.reader.service.FindAnagramsInTextService;
+import com.anagram.reader.core.FileProcessor;
+import com.anagram.reader.service.AnagramSearch;
 
 public class AnagramProcessor {
 
-	public static void main(String[] args)
-			throws FileNotFoundException, IOException, FileNotReadException {
-		AnagramFileReader.getFileContent(
-				"/Users/dthompson/Documents/DaffyDocs/Applications/InterviewQuestions/words.txt");
+	public static void main(String[] args) throws IOException {
 
-//		AnagramFileReader.getContentAsList();
+		FileProcessor fileProcessor = new FileProcessor();
 
-		FindAnagramsInTextService ser = new FindAnagramsInTextService();
-		ser.anotherFastWay();
+		try (Scanner scanner = new Scanner(System.in)) {
+			System.out.println("Enter file path : ");
+			String filePath = scanner.next();
+
+			String[] words = fileProcessor.getFileContent(filePath);
+
+			Map<String, List<String>> anagrams = AnagramSearch
+					.collectGroupsOfAnagrams(words);
+
+			System.out.println("Enter the file Path to write the result : ");
+			String outputPath = scanner.next();
+
+			fileProcessor.writeToFile(anagrams, outputPath);
+
+			System.out
+					.println("---------OUTPUT HAS BEEN WRITTEN SUCCESSFULLY AT "
+							+ outputPath + "anagram.txt" + "----------");
+
+		}
 
 	}
 
